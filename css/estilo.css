@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+html,body	{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.marcador{
+	border: 1px solid red; 
+}
+
+div#arena{
+
+}
+
+.marcadorVida{
+position: relative;
+color: #f00;
+}
+.marcadorMana{
+position: relative;
+color:#00f;
+}
+
+.progress{
+	height: 10px;
+}
+
+
+
+.miniatura img{
+	width: 70px;
+}
+
+#arena img{
+	max-height: 125px;
+	animation: standing .5s infinite alternate;
+}
+
+#botoesSaguao img{
+	max-width: 150px;
+}
+
+div#arena .row .col, div#saguao .row .col {
+	height: 150px;
+	width: 150px;
+	border: 2px outset lightgray;
+}
+
+@keyframes standing {
+    from {
+        transform: translateY(3px);
+    }
+    to {
+        transform: translateY(0);
+    }
+
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<canvas id="stage" width="400" height="400"></canvas>
+
+	<script type="text/javascript">
+		
+		window.onload = function(){
+
+			var stage = document.getElementById('stage');
+			var ctx = stage.getContext("2d");
+
+			setInterval(game, 60);
+
+			const vel = 1;
+			//velocidade de movimento
+
+			var vx=vy=0;
+			//velocidadeX e velocidadeY
+
+			var px=10;
+			//ponto de inicio
+			var py=15;
+			//ponto de inicio
+
+
+			var tp=20;
+			//tamanho da peça (quadrado)
+
+			var qp=20;
+			//quantidade de peças no tabuleiro
+
+			var ax=ay=15;
+			//posição do ponto vermelho
+
+			var trail = []
+			//rastro
+
+			var tail = 5;
+			//cauda
+
+			function game(){
+				px += vx;
+				py += vy;
+
+				if (px <0){
+					//se a cobra for para a borda esquerda, deve aparecer na borda direita
+
+					px=qp-1;
+				}
+				if (px>qp-1){
+					//se a cobra for para a borda direita, deve aparecer na borda esquerda
+
+					px=0;
+				}
+				if (py<0) {
+
+					py=qp-1;
+				}
+				if (py>qp-1) {
+
+					py=0;
+				}
+
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0,0, stage.width, stage.height);	
+			ctx.fillStyle = "red";
+			ctx.fillRect(ax*tp, ay*tp, tp, tp)
+
+			ctx.fillStyle = "gray";
+			for (var i=0;i<trail.length;i++){
+				ctx.fillRect(trail[i].x*tp, trail[i].y*tp, tp, tp);
+			}
+
+
+
+
+
+			}
+
+
+		}	
+
+
+
+
+	</script>
+
+</body>
+
+</html>
