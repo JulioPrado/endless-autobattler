@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<title>Auto battler</title>
+	<title>Endless Auto battler</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   	<link rel="stylesheet" href="css/estilo.css">
 	<script  src="js/script.js"></script>
@@ -11,121 +11,249 @@
 <body>
 
 	<!-- Menu ------------------------------------------->
-	<nav class="navbar navbar-expand-sm navbar-dark bg-info">
-
+	<nav class="navbar navbar-expand-sm navbar-dark bg-info fixed-top">
+		
 		<button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
+
+		<div  style="color: #fff;">
+			Dinheiro: R$
+			<div style="display: inline" id="Ouro">
+				50
+			</div>
+		</div>
 		<div class="collapse navbar-collapse" id="menu">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a href="" class="nav-link">Meu saguão</a>
+			
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-brand">
+					<a href="#inicio" class="nav-link">Inicio</a>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">Loja</a>
+					<a href="#saguao" class="nav-link">Meu saguão</a>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">Arena</a>
+					<a href="#loja" class="nav-link">Loja</a>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">Treino</a>
-				</li>
-				<li class="nav-item">
-					<a href="" class="nav-link">Descobertas</a>
+					<a href="#arena" class="nav-link">Arena</a>
 				</li>
 			</ul>
 		</div>
+		
 	</nav> 
 	<!-- Fim Menu ------------------------------------------->
 
-	<!-- Saguao ---------------------------------------------->
-	<div class="container marcador">
+	
+	<div style="margin-top: 60px;" id="fundoContainer" class="container">
+		<div id="inicio">
 
-		<div class="row">
-			<div id="botoesSaguao" class=" d-none d-md-block col-md-4">
-				
-				<button><< Anterior</button>
-				<button>Próximo >></button>
-				<div class="miniatura text-center">
-					<span>Nome Heroi</span>
-					<br>
-					<img src="imagens/proto.png">
-					<span class="marcadorVida">500</span>/<span class="marcadorMana">10</span>
-					<br>
-					<span>Classe: Prototipo</span>
-					<br>
-					<span>Alcance: Melee</span>
-					<br>
-					<span>VelAtk: Normal</span>
-					<br>
-					<span>danoAtk: 1</span>
-					<br>
-					<span>TipoDano: Físico</span>
-					<br>
-					<span>Armadura: 1</span>
-					<br>
-					<span>ResistMagica: 1</span>
-					<br>
-					<span>Habilidade:</span>
-					<span>O próximo ataque de Proto causa o triplo do dano.</span>
-						
-				
+			<h1 class="text-center">Endless AutoBattler</h1>
+			<h2 class="text-center">Bem vindo</h2>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in porta ligula. Mauris varius mattis leo, sit amet euismod neque tincidunt eu. Vestibulum at tincidunt felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam commodo metus sit amet purus porttitor commodo non nec leo. Donec magna mauris, convallis sit amet erat ut, pharetra euismod lacus. Proin sollicitudin suscipit nunc. Cras vestibulum nisl nisi. Aenean mauris mauris, eleifend vel nisi eget, commodo porttitor quam. Praesent vitae bibendum tellus. Duis condimentum est nec turpis elementum, id dapibus purus sodales. Phasellus eget tortor sed nibh bibendum lobortis tempor ut eros.
+		</p>
+		<p>
+			Curabitur rhoncus diam at est suscipit varius. Etiam gravida nunc non consectetur vehicula. Aliquam varius enim non sem condimentum vehicula. Sed augue enim, malesuada non ex non, scelerisque pulvinar sem. Nulla commodo orci nec fermentum ultrices. Ut mattis sagittis magna sit amet pretium. Pellentesque ligula purus, ultrices sed erat et, malesuada laoreet purus. Maecenas turpis arcu, ornare quis arcu malesuada, blandit molestie magna. Integer et sapien ut neque efficitur facilisis in ut nulla. Praesent pulvinar sed dui nec lacinia. Donec sodales id lectus sit amet pharetra. Nunc in lacus ante. Quisque mollis ipsum at malesuada elementum. Nunc leo diam, vehicula placerat leo sit amet, gravida sollicitudin odio. In rhoncus gravida nunc, non gravida dolor gravida quis. Proin sodales laoreet mollis.
+		</p>
+		<h2 class="text-center">Iniciando</h2>
+		<p>
+			Cras ut interdum lectus. Morbi vel felis in tellus ornare volutpat. Sed in justo dapibus, dictum arcu ut, suscipit ex. Praesent feugiat condimentum nibh, et convallis orci suscipit sit amet. Ut efficitur egestas nisi et cursus. Nam dapibus lacus in nisi rhoncus aliquam. Phasellus bibendum pharetra malesuada. Sed congue, ante at pharetra cursus, massa est consectetur est, vitae ultrices dui ex eget velit. Etiam aliquam mi in massa dignissim, quis sagittis eros bibendum. Morbi finibus leo quis purus vestibulum molestie. Nullam efficitur sodales eleifend. Curabitur eu dui sed ex aliquam venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+		</p>
+		<p>
+			Cras ut interdum lectus. Morbi vel felis in tellus ornare volutpat. Sed in justo dapibus, dictum arcu ut, suscipit ex. Praesent feugiat condimentum nibh, et convallis orci suscipit sit amet. Ut efficitur egestas nisi et cursus. Nam dapibus lacus in nisi rhoncus aliquam. Phasellus bibendum pharetra malesuada. Sed congue, ante at pharetra cursus, massa est consectetur est, vitae ultrices dui ex eget velit. Etiam aliquam mi in massa dignissim, quis sagittis eros bibendum. Morbi finibus leo quis purus vestibulum molestie. Nullam efficitur sodales eleifend. Curabitur eu dui sed ex aliquam venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+		</p>
+		<h2 class="text-center">Estratégias</h2>
+		<p>
+			Cras ut interdum lectus. Morbi vel felis in tellus ornare volutpat. Sed in justo dapibus, dictum arcu ut, suscipit ex. Praesent feugiat condimentum nibh, et convallis orci suscipit sit amet. Ut efficitur egestas nisi et cursus. Nam dapibus lacus in nisi rhoncus aliquam. Phasellus bibendum pharetra malesuada. Sed congue, ante at pharetra cursus, massa est consectetur est, vitae ultrices dui ex eget velit. Etiam aliquam mi in massa dignissim, quis sagittis eros bibendum. Morbi finibus leo quis purus vestibulum molestie. Nullam efficitur sodales eleifend. Curabitur eu dui sed ex aliquam venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+		</p>
+		<p>
+			Cras ut interdum lectus. Morbi vel felis in tellus ornare volutpat. Sed in justo dapibus, dictum arcu ut, suscipit ex. Praesent feugiat condimentum nibh, et convallis orci suscipit sit amet. Ut efficitur egestas nisi et cursus. Nam dapibus lacus in nisi rhoncus aliquam. Phasellus bibendum pharetra malesuada. Sed congue, ante at pharetra cursus, massa est consectetur est, vitae ultrices dui ex eget velit. Etiam aliquam mi in massa dignissim, quis sagittis eros bibendum. Morbi finibus leo quis purus vestibulum molestie. Nullam efficitur sodales eleifend. Curabitur eu dui sed ex aliquam venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+		</p>
+		</div>
+		<hr>
+	<!-- Saguão ---------------------------------------------->
+		<div class="row" id="saguao">
+			<h1 class="mx-auto">Saguão</h1>
+			<div class="row">
+				<div id="botoesSaguao" class=" d-none d-md-block col-md-4">
 					
-				</div>
+					<h4>DICA</h4>
+					<em>Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a ordem na primeira coluna conforme o esquema abaixo.</em>
+					<br>
+					<img class="img-fluid" src="imagens/ordemAtaque.png">
 
-				<hr>
-				<h4>DICA</h4>
-				<em>Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a ordem na primeira coluna conforme o esquema abaixo.</em>
-				<br>
-				<img class="img-fluid" src="imagens/ordemAtaque.png">
-
-			</div>
-			<div id="saguao" class="ml-auto col-md-8">
-				<div class="row">
-					<div id="00" class="col">
-						00
-					</div>
-					<div id="01" class="col">
-						01
-					</div>
 				</div>
-				<div class="row">
-					<div id="10" class="col">
-						10
+				<div id="saguao" class="ml-auto col-md-8">
+					
+					<div class="row">
+						<div id="00" class="col">
+							00
+						</div>
+						<div id="01" class="col">
+							01
+						</div>
 					</div>
-					<div id="11" class="col">
-						11
+					<div class="row">
+						<div id="10" class="col">
+							10
+						</div>
+						<div id="11" class="col">
+							11
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div id="20" class="col">
-						20
+					<div class="row">
+						<div id="20" class="col">
+							20
+						</div>
+						<div id="21" class="col">
+							21
+						</div>
 					</div>
-					<div id="21" class="col">
-						21
+					<div class="row">
+						<div id="30" class="col">
+							30
+						</div>
+						<div id="31" class="col">
+							31
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div id="30" class="col">
-						30
-					</div>
-					<div id="31" class="col">
-						31
-					</div>
+					
 				</div>
 			</div>
 		</div>
-		<!-- Fim Saguao ---------------------------------------------->
+	<!-- Fim Saguao ---------------------------------------------->
+	<hr>
+	<!-- Loja ---------------------------------------------->
+		<div class="row" id="loja">
+			<h1 class="mx-auto">Loja</h1>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th></th>
+						<th></th>
+						<th>Nome</th>
+						<th>Natureza</th>
+						<th>Raça</th>
+						<th>Classe</th>
+						<th>Origem</th>
+						<th>Planeta</th>
+						<th>Nivel</th>
+						<th>HP</th>
+						<th>MP</th>
+						<th>atqDano</th>
+						<th>Esquiva</th>
+						<th>Força Especial</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="text-center">
+								R$ 50
+							</div>
+							<button type="button" class="btn btn-dark" value="0">Comprar</button>
+						</td>
+						<td><img src="imagens/purple.png"></td>
+						<td>Purple</td>
+						<td>Natureza</td>
+						<td>Raça</td>
+						<td>Classe</td>
+						<td>Origem</td>
+						<td>Planeta</td>
+						<td>1</td>
+						<td>100</td>
+						<td>10</td>
+						<td>5</td>
+						<td>10%</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-center">
+								R$ 50
+							</div>
+							<button type="button" class="btn btn-dark" value="1">Comprar</button>
+						</td>
+						<td><img src="imagens/proto.png"></td>
+						<td>Proto</td>
+						<td>Natureza</td>
+						<td>Raça</td>
+						<td>Classe</td>
+						<td>Origem</td>
+						<td>Planeta</td>
+						<td>1</td>
+						<td>100</td>
+						<td>10</td>
+						<td>5</td>
+						<td>10%</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-center">
+								R$ 50
+							</div>
+							<button type="button" class="btn btn-dark" value="2">Comprar</button>
+						</td>
+						<td><img src="imagens/red.png"></td>
+						<td>Red</td>
+						<td>Natureza</td>
+						<td>Raça</td>
+						<td>Classe</td>
+						<td>Origem</td>
+						<td>Planeta</td>
+						<td>1</td>
+						<td>90</td>
+						<td>15</td>
+						<td>8</td>
+						<td>10%</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-center">
+								R$ 50
+							</div>
+							<button type="button" class="btn btn-dark" value="3">Comprar</button>
+						</td>
+						<td><img src="imagens/steroid.png"></td>
+						<td>Steroid</td>
+						<td>Natureza</td>
+						<td>Raça</td>
+						<td>Classe</td>
+						<td>Origem</td>
+						<td>Planeta</td>
+						<td>1</td>
+						<td>120</td>
+						<td>10</td>
+						<td>5</td>
+						<td>10%</td>
+						<td>10</td>
+					</tr>
+				</tbody>
+			</table>
+
+				
+			
+		</div>
+		<!-- Fim Loja ---------------------------------------------->
 		<hr>
 		<!-- Arena ---------------------------------------------->
-		<div class="row">
+		<div class="row" id="arena">
+			
+			
 			<div class=" d-none d-md-block col-md-4">
-				<h1>LOG</h1>
-
+				<h1>ARENA</h1>
+				<div id="batalhaLogs">
+					
+				</div>
 
 			</div>
-			<div id="arena" class="ml-auto col-md-8">
+			<div class="ml-auto col-md-8">
+				<button type="button" class="btn btn-danger" >INICIAR ARENA</button>
 				<div class="row">
 					<div id="00" class="col">
 						00

@@ -4,15 +4,37 @@ html,body	{
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	background-color: #000;
 }
 
 .marcador{
 	border: 1px solid red; 
 }
 
+
+#fundoContainer{
+	background-color: #000;
+}
+
+#inicio, #loja, #saguao, #arena{
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 10px;
+}
+
 div#arena{
 
 }
+
+/*
+LOJA
+===================================================== */
+
+div#loja img{
+	width: 100px;
+}
+
+
 
 .marcadorVida{
 position: relative;
