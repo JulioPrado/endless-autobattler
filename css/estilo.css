@@ -4,7 +4,6 @@ html,body	{
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: #000;
 }
 
 .marcador{
@@ -13,13 +12,12 @@ html,body	{
 
 
 #fundoContainer{
-	background-color: #000;
 }
 
 #inicio, #loja, #saguao, #arena{
 	background-color: #fff;
-	border-radius: 10px;
 	padding: 10px;
+	padding-top: 60px;
 }
 
 div#arena{
@@ -34,7 +32,22 @@ div#loja img{
 	width: 100px;
 }
 
+div#saguao img{
+	width: 150px;
+}
 
+/*
+SAGUÃO
+======================================================*/
+.d-flex .item{
+	background-color: #eee;
+	border: 1px solid black;
+	width: 200px;
+
+	margin: 10px;
+	padding: 10px;
+	box-shadow: 2px 2px 2px black;
+}
 
 .marcadorVida{
 position: relative;
@@ -49,13 +62,11 @@ color:#00f;
 	height: 10px;
 }
 
-
-
 .miniatura img{
 	width: 70px;
 }
 
-#arena img{
+#saguao img{
 	max-height: 125px;
 	animation: standing .5s infinite alternate;
 }
@@ -64,7 +75,7 @@ color:#00f;
 	max-width: 150px;
 }
 
-div#arena .row .col, div#saguao .row .col {
+div#arena .row .col{
 	height: 150px;
 	width: 150px;
 	border: 2px outset lightgray;
@@ -72,7 +83,7 @@ div#arena .row .col, div#saguao .row .col {
 
 @keyframes standing {
     from {
-        transform: translateY(3px);
+        transform: translateY(5px);
     }
     to {
         transform: translateY(0);

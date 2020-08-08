@@ -8,7 +8,7 @@
   	<link rel="stylesheet" href="css/estilo.css">
 	<script  src="js/script.js"></script>
 </head>
-<body>
+<body onload = "atualizaOuro()">
 
 	<!-- Menu ------------------------------------------->
 	<nav class="navbar navbar-expand-sm navbar-dark bg-info fixed-top">
@@ -19,9 +19,8 @@
 
 
 		<div  style="color: #fff;">
-			Dinheiro: R$
-			<div style="display: inline" id="Ouro">
-				50
+			
+			<div style="display: inline" id="ouro">
 			</div>
 		</div>
 		<div class="collapse navbar-collapse" id="menu">
@@ -30,11 +29,12 @@
 				<li class="nav-brand">
 					<a href="#inicio" class="nav-link">Inicio</a>
 				</li>
-				<li class="nav-item">
-					<a href="#saguao" class="nav-link">Meu saguão</a>
-				</li>
+				
 				<li class="nav-item">
 					<a href="#loja" class="nav-link">Loja</a>
+				</li>
+				<li class="nav-item">
+					<a href="#saguao" class="nav-link">Meu saguão</a>
 				</li>
 				<li class="nav-item">
 					<a href="#arena" class="nav-link">Arena</a>
@@ -73,58 +73,6 @@
 		</p>
 		</div>
 		<hr>
-	<!-- Saguão ---------------------------------------------->
-		<div class="row" id="saguao">
-			<h1 class="mx-auto">Saguão</h1>
-			<div class="row">
-				<div id="botoesSaguao" class=" d-none d-md-block col-md-4">
-					
-					<h4>DICA</h4>
-					<em>Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a ordem na primeira coluna conforme o esquema abaixo.</em>
-					<br>
-					<img class="img-fluid" src="imagens/ordemAtaque.png">
-
-				</div>
-				<div id="saguao" class="ml-auto col-md-8">
-					
-					<div class="row">
-						<div id="00" class="col">
-							00
-						</div>
-						<div id="01" class="col">
-							01
-						</div>
-					</div>
-					<div class="row">
-						<div id="10" class="col">
-							10
-						</div>
-						<div id="11" class="col">
-							11
-						</div>
-					</div>
-					<div class="row">
-						<div id="20" class="col">
-							20
-						</div>
-						<div id="21" class="col">
-							21
-						</div>
-					</div>
-					<div class="row">
-						<div id="30" class="col">
-							30
-						</div>
-						<div id="31" class="col">
-							31
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	<!-- Fim Saguao ---------------------------------------------->
-	<hr>
 	<!-- Loja ---------------------------------------------->
 		<div class="row" id="loja">
 			<h1 class="mx-auto">Loja</h1>
@@ -148,107 +96,50 @@
 						<th>Força Especial</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<div class="text-center">
-								R$ 50
-							</div>
-							<button type="button" class="btn btn-dark" value="0">Comprar</button>
-						</td>
-						<td><img src="imagens/purple.png"></td>
-						<td>Purple</td>
-						<td>Natureza</td>
-						<td>Raça</td>
-						<td>Classe</td>
-						<td>Origem</td>
-						<td>Planeta</td>
-						<td>1</td>
-						<td>100</td>
-						<td>10</td>
-						<td>5</td>
-						<td>10%</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="text-center">
-								R$ 50
-							</div>
-							<button type="button" class="btn btn-dark" value="1">Comprar</button>
-						</td>
-						<td><img src="imagens/proto.png"></td>
-						<td>Proto</td>
-						<td>Natureza</td>
-						<td>Raça</td>
-						<td>Classe</td>
-						<td>Origem</td>
-						<td>Planeta</td>
-						<td>1</td>
-						<td>100</td>
-						<td>10</td>
-						<td>5</td>
-						<td>10%</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="text-center">
-								R$ 50
-							</div>
-							<button type="button" class="btn btn-dark" value="2">Comprar</button>
-						</td>
-						<td><img src="imagens/red.png"></td>
-						<td>Red</td>
-						<td>Natureza</td>
-						<td>Raça</td>
-						<td>Classe</td>
-						<td>Origem</td>
-						<td>Planeta</td>
-						<td>1</td>
-						<td>90</td>
-						<td>15</td>
-						<td>8</td>
-						<td>10%</td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="text-center">
-								R$ 50
-							</div>
-							<button type="button" class="btn btn-dark" value="3">Comprar</button>
-						</td>
-						<td><img src="imagens/steroid.png"></td>
-						<td>Steroid</td>
-						<td>Natureza</td>
-						<td>Raça</td>
-						<td>Classe</td>
-						<td>Origem</td>
-						<td>Planeta</td>
-						<td>1</td>
-						<td>120</td>
-						<td>10</td>
-						<td>5</td>
-						<td>10%</td>
-						<td>10</td>
-					</tr>
+				<tbody id="tabelaLoja">
+
 				</tbody>
 			</table>
-
-				
-			
+			<button id="botaoAbreLoja" onclick="abrirLoja();">
+				Abrir loja
+			</button>
 		</div>
 		<!-- Fim Loja ---------------------------------------------->
 		<hr>
+	<!-- Saguão ---------------------------------------------->
+	<div id="saguao">
+		<h1 class="" style='height:100px;'>Saguão</h1>
+		<button onclick="atualizarSaguao();">
+			Exibir saguão
+		</button>
+			<div>
+				<marquee>
+					<em>Dica: Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a ordem na primeira coluna conforme o esquema abaixo.</em>
+				</marquee>
+			</div>
+		<div class="row">
+			<div class="row">
+				
+			</div>
+			<div class="row">
+				<div id="bancoSaguao" class="ml-auto col d-flex flex-wrap">
+
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fim Saguao ---------------------------------------------->
+	<hr>
 		<!-- Arena ---------------------------------------------->
-		<div class="row" id="arena">
+		<div class="row mx-auto" id="arena">
 			
 			
 			<div class=" d-none d-md-block col-md-4">
 				<h1>ARENA</h1>
 				<div id="batalhaLogs">
-					
+					asdasd
 				</div>
 
 			</div>
@@ -288,51 +179,10 @@
 						20
 					</div>
 					<div id="21" class="col">
-						<div id="hero">
-							<span id="marcadorVidaProto" class="marcadorVida">
-								500
-							</span>/
-							<span id="marcadorManaProto" class="marcadorMana">
-									10
-							</span>
-							<img class="img-fluid" src="imagens/proto.png">
-
-							<!--
-							<div class="progress">
-								<div id="marcadorVida" class="progress-bar bg-success" style="width:30%">
-								</div>
-							</div>
-							<div class="progress">
-								<div id="marcadorMana" style="width:10%;" class="progress-bar bg-info">
-								</div>		
-							</div>
-							 -->
-							
-						</div>
+						21
 					</div>
 					<div id="22" class="col">
-						<div id="hero">
-							<span id="marcadorVidaProto2" class="marcadorVida">
-								500
-							</span>/
-							<span id="marcadorManaProto2" class="marcadorMana">
-									10
-							</span>
-							<img class="img-fluid" src="imagens/proto2.png">
-
-							<!--
-							<div class="progress">
-								<div id="marcadorVida" class="progress-bar bg-success" style="width:30%">
-								</div>
-							</div>
-							<div class="progress">
-								<div id="marcadorMana" style="width:10%;" class="progress-bar bg-info">
-								</div>		
-							</div>
-							 -->
-							
-							
-						</div>
+						
 					</div>
 					<div id="23" class="col">
 						23
