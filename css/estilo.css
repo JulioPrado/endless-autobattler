@@ -33,7 +33,7 @@ div#loja img{
 }
 
 div#saguao img{
-	width: 150px;
+	width: 75px;
 }
 
 /*
@@ -42,11 +42,14 @@ SAGUÃO
 .d-flex .item{
 	background-color: #eee;
 	border: 1px solid black;
-	width: 200px;
 
 	margin: 10px;
 	padding: 10px;
 	box-shadow: 2px 2px 2px black;
+}
+
+div#timeSaguao .item{
+	width: 100%;
 }
 
 .marcadorVida{

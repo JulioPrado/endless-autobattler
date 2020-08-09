@@ -34,7 +34,7 @@
 					<a href="#loja" class="nav-link">Loja</a>
 				</li>
 				<li class="nav-item">
-					<a href="#saguao" class="nav-link">Meu saguão</a>
+					<a href="#saguao" class="nav-link">Saguão</a>
 				</li>
 				<li class="nav-item">
 					<a href="#arena" class="nav-link">Arena</a>
@@ -83,12 +83,11 @@
 						<th></th>
 						<th></th>
 						<th>Nome</th>
-						<th>Natureza</th>
 						<th>Raça</th>
 						<th>Classe</th>
 						<th>Origem</th>
-						<th>Planeta</th>
-						<th>Nivel</th>
+						<th>Elemento</th>
+						<th>Nível</th>
 						<th>HP</th>
 						<th>MP</th>
 						<th>atqDano</th>
@@ -100,26 +99,40 @@
 
 				</tbody>
 			</table>
-			<button id="botaoAbreLoja" onclick="abrirLoja();">
+			<button type="button" class="btn btn-info mx-auto" id="botaoAbreLoja" onclick="abrirLoja();">
 				Abrir loja
+			</button>
+			<button type="button" class="btn btn-info mx-auto" style="display:none;" id="botaoFechaLoja" onclick="fecharLoja();">
+				Fechar loja
 			</button>
 		</div>
 		<!-- Fim Loja ---------------------------------------------->
 		<hr>
 	<!-- Saguão ---------------------------------------------->
 	<div id="saguao">
-		<h1 class="" style='height:100px;'>Saguão</h1>
-		<button onclick="atualizarSaguao();">
-			Exibir saguão
-		</button>
-			<div>
-				<marquee>
-					<em>Dica: Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a ordem na primeira coluna conforme o esquema abaixo.</em>
-				</marquee>
-			</div>
-		<div class="row">
+		<h1 class="text-center" style='height:100px;'>Saguão</h1>
+		<div>
+			<span>
+				<em><strong>Dica:</strong> Lembre-se de alinhar seus heróis mais resistentes para serem alvejados primeiro e os mais frágeis para serem alvejados por último. Os ataques começarão no personagem que estiver na primeira posição da segunda coluna, depois para o personagem abaixo dele, e seguirá assim até o fim da coluna, depois segue a mesma ordem na primeira coluna .</em>
+			</span>
+		</div>
+
+		<button type="button" class="btn btn-info mx-auto" id="botaoAbreSaguao" style="display: block;" onclick="atualizarSaguao();">
+				Exibir saguão
+			</button>
+		<div>
 			<div class="row">
-				
+				<h1 class="d-block mx-auto">
+					TIME PRINCIPAL
+				</h1>
+			</div>
+			<div class="row">
+				<div id="timeSaguao" class="ml-auto col d-flex flex-column flex-wrap">
+
+				</div>	
+			</div>
+			<div class="row">
+				<h1 class="d-block mx-auto">BANCO</h1>
 			</div>
 			<div class="row">
 				<div id="bancoSaguao" class="ml-auto col d-flex flex-wrap">
@@ -129,6 +142,9 @@
 				</div>
 			</div>
 		</div>
+		<button type="button" class="btn btn-info mx-auto" style="display:none;" id="botaoFechaSaguao" onclick="fecharSaguao();">
+				Fechar Saguão
+		</button>
 	</div>
 	<!-- Fim Saguao ---------------------------------------------->
 	<hr>

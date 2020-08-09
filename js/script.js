@@ -3,21 +3,20 @@
 var loja = [];
 var meuTime = [];
 var meuBanco = [];
-var jogador = {'ouro':500000};
+var jogador = {'ouro':600};
 
 function atualizaOuro(){
-document.getElementById("ouro").innerHTML = "Dinheiro: R$"+jogador.ouro+",00.";
+document.getElementById("ouro").innerHTML = "Dinheiro: R$"+jogador.ouro.toFixed(2);//toFixed retorna string
 }
 
 
 
 // CLASSES  =====================================================================================
 
-function hero(nome,lvl,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
+function hero(nome,nivel,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
   this.posicao=null;
   this.nome=nome;
-  //this.natureza=natureza;
-  this.natureza=null;
+  this.temporario=null;
   //this.raca=raca;
   this.raca=null;
   //this.classe=classe;
@@ -25,8 +24,8 @@ function hero(nome,lvl,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
   //this.origem=origem;
   this.origem=null;
   //this.planeta=planeta;
-  this.planeta=null;
-  this.lvl=lvl;
+  this.elemento=null;
+  this.nivel=nivel;
   this.maxhp=maxhp;
   this.maxmana=maxmana;
   this.atqDano=atqDano;
@@ -37,21 +36,21 @@ function hero(nome,lvl,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
   this.preco=50;
 
   function atacar(alvo){
-
   }
+
 
 
 }
 /*
 0 posicao
 1 nome
-2 natureza-
+2 vago-
 3 raça-
 4 classe-
 5 origem-
-6 planeta-
+6 elemento-
 
-7 level
+7 nível
 8 maxhp
 9 maxmana
 10 atqDano
@@ -92,14 +91,13 @@ var steroidEspecial = new especial("Cometa de pégasuuuu",
 /*
 0 posicao
 1 nome
-
-2 natureza-
+2 vago-
 3 raça-
 4 classe-
 5 origem-
-6 planeta-
+6 elemento-
 
-7 level
+7 nível
 8 maxhp
 9 maxmana
 10 atqDano
@@ -135,12 +133,11 @@ function abrirLoja(){
             "</td>"+
             "<td><img src='imagens/"+loja[i].nome+".png'></td>"+
             "<td>"+loja[i].nome+"</td>"+
-            "<td>"+loja[i].natureza+"</td>"+
             "<td>"+loja[i].raca+"</td>"+
            "<td>"+loja[i].classe+"</td>"+
             "<td>"+loja[i].origem+"</td>"+
-            "<td>"+loja[i].planeta+"</td>"+
-            "<td>"+loja[i].lvl+"</td>"+
+            "<td>"+loja[i].elemento+"</td>"+
+            "<td>"+loja[i].nivel+"</td>"+
             "<td>"+loja[i].maxhp+"</td>"+
             "<td>"+loja[i].maxmana+"</td>"+
             "<td>"+loja[i].atqDano+"</td>"+
@@ -148,8 +145,15 @@ function abrirLoja(){
             "<td>"+loja[i].forcaEspecial+"</td>"+
           "</tr>");
   }
-
   document.getElementById("botaoAbreLoja").style="display: none;"
+  document.getElementById("botaoFechaLoja").style="display: inline;"
+  
+}
+
+function fecharLoja(){
+   document.getElementById("tabelaLoja").innerHTML='';
+   document.getElementById("botaoAbreLoja").style="display: inline;"
+   document.getElementById("botaoFechaLoja").style="display: none;"
 }
 
 function comprarHeroi(indiceLoja){
@@ -174,6 +178,31 @@ function comprarHeroi(indiceLoja){
 // SAGUÃO =====================================================================================
 
 function atualizarSaguao(){
+
+  let el1=document.getElementById("timeSaguao");
+
+  el1.innerHTML='';
+    for (let i=0;i<meuTime.length;i++){
+    $(el1).append(
+      "<div class='item text-center'>"+
+      "<h1><strong> Posição: "+(i+1)+"</h1></strong>"+ 
+       "<br><strong>"+meuTime[i].nome+"</strong>"+" Nível: <strong>"+meuTime[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuTime["+i+"])'>upar</button>"+
+        "<br><img src='imagens/"+
+        meuTime[i].nome+".png'>"+
+        meuTime[i].raca+" "+
+        meuTime[i].classe+" "+
+        meuTime[i].origem+" "+
+        "Elemento: "+meuTime[i].elemento+" "+
+        "<br><span class='marcadorVida'>HP "+meuTime[i].maxhp+"</span>"+
+        "/<span class='marcadorMana'>"+meuTime[i].maxmana+" Mana</span>"+
+        "<br>Dano: "+meuTime[i].atqDano+
+        " Esquiva: "+meuTime[i].esquiva+
+        " Força especial: "+meuTime[i].forcaEspecial+
+        "<br><button type='button' class='btn btn btn-sm btn-info' onclick='reordenar(["+i+"])'>↓</button>"+
+     "</div>"
+    );
+  }
+
   let el=document.getElementById("bancoSaguao");
 
   el.innerHTML='';
@@ -183,30 +212,40 @@ function atualizarSaguao(){
        "<br><strong>"+meuBanco[i].nome+"</strong>"+
         "<img src='imagens/"+
         meuBanco[i].nome+".png'>"+
-        "<br>Nivel: <strong>"+meuBanco[i].lvl+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuBanco["+i+"])'>upar</button>"+ 
-        "<br>"+meuBanco[i].natureza+
-        " "+meuBanco[i].raca+
+        "<br>Nível: <strong>"+meuBanco[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuBanco["+i+"])'>upar</button>"+ 
+        "<br> "+meuBanco[i].raca+
         "<br>"+meuBanco[i].classe+
         " "+meuBanco[i].origem+
-        "<br>Planeta: "+meuBanco[i].planeta+
+        "<br>Elemento: "+meuBanco[i].elemento+
         
         "<br><span class='marcadorVida'>HP: "+meuBanco[i].maxhp+"</span>"+
         "/<span class='marcadorMana'>Mana: "+meuBanco[i].maxmana+"</span>"+
         "<br>Dano: "+meuBanco[i].atqDano+
         " Esquiva: "+meuBanco[i].esquiva+
         "<br>Força especial: "+meuBanco[i].forcaEspecial+
-        "<br><button type='button' class='btn btn btn-sm btn-danger' onclick='venderBanco(meuBanco["+i+"])'>Vender</button>"+
+        "<br><button type='button' class='btn btn btn-sm btn-danger' onclick='venderBanco(["+i+"])'>Vender</button>"+
         
      "</div>"
     );
   }
-  $(el).append("<button style='height:100px;' onclick='fecharSaguao()'' type='button' class='btn btn-dark align-self-center'>"+
-          "Esconder saguão"+
-        "</button>");
+  document.getElementById("botaoAbreSaguao").style="display: none;";
+  document.getElementById("botaoFechaSaguao").style="display: block;";
+  
 }
 
 function fecharSaguao(){
-  document.getElementById('bancoSaguao').innerHTML='';
+  document.getElementById("botaoAbreSaguao").style="display: block;";
+  document.getElementById("botaoFechaSaguao").style="display: none;";
+  document.getElementById("bancoSaguao").innerHTML=" ";
+  document.getElementById("timeSaguao").innerHTML=" ";
+}
+
+function venderBanco(indiceBanco){
+  alert(meuBanco[indiceBanco].nome+" nível "+meuBanco[indiceBanco].nivel+" vendido por: R$ "+meuBanco[indiceBanco].preco/2+"!");
+  jogador.ouro += meuBanco[indiceBanco].preco/2;
+  atualizaOuro();
+  meuBanco.splice(indiceBanco,1);
+  atualizarSaguao();
 }
 
 function subirNivel(heroi){
@@ -220,18 +259,6 @@ function subirNivel(heroi){
 var inimigoTime =[];
 
 // TESTES  ======================================================================================
-
-meuTime.push(Object.assign({},loja[0]));
-meuTime.push(Object.assign({},loja[3]));
-meuTime.push(Object.assign({},loja[2]));
-meuTime.push(Object.assign({},loja[0]));
-meuTime.push(Object.assign({},loja[2]));
-meuTime.push(Object.assign({},loja[1]));
-meuTime.push(Object.assign({},loja[0]));
-meuTime.push(Object.assign({},loja[1]));
-
-
-
 
 function montarArena() {
   let meuTimeTemp = Object.assign({},meuTime)
