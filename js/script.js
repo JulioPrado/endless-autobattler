@@ -5,10 +5,17 @@ var meuTime = [];
 var meuBanco = [];
 var jogador = {'ouro':600};
 
+var listaProgressao = {
+// 'nomeHeroi': { 'atributo': valornumerico, 'atributo':valorNumerico}
+  'Red': {'maxhp': 5, 'atqDano':2,'forcaEspecial':1}
+}
+
+console.log(listaProgressao.Red.maxhp);
+console.log(listaProgressao.Red.atqDano);
+
 function atualizaOuro(){
 document.getElementById("ouro").innerHTML = "Dinheiro: R$"+jogador.ouro.toFixed(2);//toFixed retorna string
 }
-
 
 
 // CLASSES  =====================================================================================
@@ -169,9 +176,6 @@ function comprarHeroi(indiceLoja){
       meuBanco.push(Object.assign({},loja[indiceLoja]));
     }
   }
-
-  console.table(meuTime);
-  console.table(meuBanco);
   atualizarSaguao();
 }
 
@@ -184,21 +188,21 @@ function atualizarSaguao(){
   el1.innerHTML='';
     for (let i=0;i<meuTime.length;i++){
     $(el1).append(
-      "<div class='item text-center'>"+
-      "<h1><strong> Posição: "+(i+1)+"</h1></strong>"+ 
-       "<br><strong>"+meuTime[i].nome+"</strong>"+" Nível: <strong>"+meuTime[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuTime["+i+"])'>upar</button>"+
+      "<div class='item'>"+
+      "<h4><strong> Posição: "+(i+1)+"</h4></strong>"+ 
+       "<br><button type='button' class='float-left mr-3 btn btn btn-lg btn-info' onclick='reordenar(0,"+i+")'>↑</button>  <strong>"+meuTime[i].nome+"</strong>"+" Nível: <strong>"+meuTime[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuTime["+i+"])'>upar</button>"+
         "<br><img src='imagens/"+
         meuTime[i].nome+".png'>"+
         meuTime[i].raca+" "+
         meuTime[i].classe+" "+
         meuTime[i].origem+" "+
         "Elemento: "+meuTime[i].elemento+" "+
-        "<br><span class='marcadorVida'>HP "+meuTime[i].maxhp+"</span>"+
+        "<br> <button type='button' class='float-left mr-3 btn btn btn-lg btn-info' onclick='reordenar(1,"+i+")'>↓</button> <span class='marcadorVida'>HP "+meuTime[i].maxhp+"</span>"+
         "/<span class='marcadorMana'>"+meuTime[i].maxmana+" Mana</span>"+
-        "<br>Dano: "+meuTime[i].atqDano+
+        " Dano: "+meuTime[i].atqDano+
         " Esquiva: "+meuTime[i].esquiva+
         " Força especial: "+meuTime[i].forcaEspecial+
-        "<br><button type='button' class='btn btn btn-sm btn-info' onclick='reordenar(["+i+"])'>↓</button>"+
+        "<button type='button' class='float-right btn btn btn-sm btn-outline-danger' onclick='colocarBanco(["+i+"])'>Colocar no banco</button>"+
      "</div>"
     );
   }
@@ -223,8 +227,8 @@ function atualizarSaguao(){
         "<br>Dano: "+meuBanco[i].atqDano+
         " Esquiva: "+meuBanco[i].esquiva+
         "<br>Força especial: "+meuBanco[i].forcaEspecial+
-        "<br><button type='button' class='btn btn btn-sm btn-danger' onclick='venderBanco(["+i+"])'>Vender</button>"+
-        
+        "<br><button type='button' class='btn btn btn-sm btn-danger' onclick='colocarTime(["+i+"])'>Colocar no time</button>"+
+        "<br><button type='button' class='btn btn btn-sm btn-outline-danger' onclick='venderBanco(["+i+"])'>Vender</button>"+
      "</div>"
     );
   }
@@ -253,6 +257,47 @@ function subirNivel(heroi){
   atualizarSaguao();
 }
 
+function colocarBanco(indiceBanco){
+  meuBanco.unshift(Object.assign({},meuTime[indiceBanco]));
+  meuTime.splice(indiceBanco,1);
+  atualizarSaguao();
+}
+
+function colocarTime(indiceBanco){
+  if (meuTime.length<8){
+  meuTime.push(Object.assign({},meuBanco[indiceBanco]));
+  meuBanco.splice(indiceBanco,1);
+  atualizarSaguao();
+  }else{
+    alert("O time está cheio!");
+  }
+}
+
+function reordenar(seta,indiceTime){
+  if (seta==0) {
+    if (indiceTime==0) {
+      alert("Herói já na primeira posição! Não é possível reordenar.");
+    }else{
+      let aux = Object.assign({},meuTime[indiceTime-1]);
+      meuTime[indiceTime-1] = Object.assign({},meuTime[indiceTime]);
+      meuTime[indiceTime]= Object.assign({},aux);
+      atualizarSaguao();
+      console.table(meuTime);
+    }
+
+  }else if (seta==1) {
+    if (indiceTime>=meuTime.length-1) {
+      alert("Herói já na última posição! Não é possível reordenar. Se deseja colocar o herói no banco, use o botão 'Colocar no banco'.");
+    }else{
+      let aux = Object.assign({},meuTime[indiceTime+1]);
+      meuTime[indiceTime+1] = Object.assign({},meuTime[indiceTime]);
+      meuTime[indiceTime] = Object.assign({},aux);
+      atualizarSaguao();
+
+    }
+  }
+
+}
 
 
 // TIMES  ======================================================================================
@@ -298,26 +343,6 @@ function montarArena() {
       }
     }
   }
-}
-
-
-
-
-function colocarBanco(indiceTime){
-  meuBanco.push(Object.assign({}, meuTime[indiceTime] ));
-
-  meuTime[indiceTime]=null
-
-  for (let i = indiceTime; i<meuTime.length-1 ;i++) {
-    if (meutime[i]==null) {
-      meutime[i]=Object.assign({}, meuTime[i+1] );
-      meutime[i+1]=null;
-    }
-  }
-}
-
-function colocarTime(indiceBanco){
-
 }
 
 // teste de chamada de especial passando a força como parâmetro meuTime[2].especial.func(meuTime[2].forcaEspecial)
