@@ -5,16 +5,8 @@ var meuTime = [];
 var meuBanco = [];
 var jogador = {'ouro':600};
 
-var listaProgressao = {
-// 'nomeHeroi': { 'atributo': valornumerico, 'atributo':valorNumerico}
-  'Red': {'maxhp': 5, 'atqDano':2,'forcaEspecial':1}
-}
-
-console.log(listaProgressao.Red.maxhp);
-console.log(listaProgressao.Red.atqDano);
-
 function atualizaOuro(){
-document.getElementById("ouro").innerHTML = "Dinheiro: R$"+jogador.ouro.toFixed(2);//toFixed retorna string
+document.getElementById("ouro").innerHTML = "Ouro: "+jogador.ouro.toFixed(2);//toFixed retorna string
 }
 
 
@@ -39,13 +31,12 @@ function hero(nome,nivel,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
   this.esquiva=esquiva;
   this.forcaEspecial=forcaEspecial;
   this.especial=especial;
-  this.chanceCritico=10;
+  this.chanceCritico=1;
   this.preco=50;
 
   function atacar(alvo){
+
   }
-
-
 
 }
 /*
@@ -114,10 +105,10 @@ var steroidEspecial = new especial("Cometa de pégasuuuu",
 14 chanceCritico (padrão 10)
 15 preço
 */
-var purple = new hero("Purple",1,100,10,5,1,10,purpleEspecial);
-var proto = new hero("Proto",1,100,10,5,1,10,protoEspecial);
-var red = new hero("Red",1,90,15,8,1,12,redEspecial);
-var steroid = new hero("Steroid",1,120,10,5,1,10,steroidEspecial);
+var purple = new hero("Purple",1,90,10,5,1,10,purpleEspecial);
+var proto = new hero("Proto",1,90,10,5,1,10,protoEspecial);
+var red = new hero("Red",1,80,15,8,1,12,redEspecial);
+var steroid = new hero("Steroid",1,100,10,5,1,10,steroidEspecial);
 
 // LOJA ====================================================================================
 
@@ -134,7 +125,7 @@ function abrirLoja(){
       "<tr>"+
             "<td>"+
               "<div class='text-center'>"+
-                "R$"+loja[i].preco+
+                loja[i].preco+" de ouro"+
              "</div>"+
               "<button type='button' onclick='comprarHeroi("+i+")' class='btn btn-dark' >Comprar</button>"+
             "</td>"+
@@ -166,14 +157,16 @@ function fecharLoja(){
 function comprarHeroi(indiceLoja){
 
   if(jogador.ouro<loja[indiceLoja].preco){
-   alert("Você não tem dinheiro o suficiente.")
+   alert("Você não tem ouro o suficiente.")
   }else{
     jogador.ouro=jogador.ouro-loja[indiceLoja].preco;
     atualizaOuro();
     if (meuTime.length<8) {
       meuTime.push(Object.assign({},loja[indiceLoja]));
+      alert(loja[indiceLoja].nome+" adicionado(a) ao seu time principal.")
     }else{
       meuBanco.push(Object.assign({},loja[indiceLoja]));
+      alert(loja[indiceLoja].nome+" adicionado(a) ao seu banco.")
     }
   }
   atualizarSaguao();
@@ -190,7 +183,7 @@ function atualizarSaguao(){
     $(el1).append(
       "<div class='item'>"+
       "<h4><strong> Posição: "+(i+1)+"</h4></strong>"+ 
-       "<br><button type='button' class='float-left mr-3 btn btn btn-lg btn-info' onclick='reordenar(0,"+i+")'>↑</button>  <strong>"+meuTime[i].nome+"</strong>"+" Nível: <strong>"+meuTime[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuTime["+i+"])'>upar</button>"+
+       "<br><button type='button' class='float-left mr-3 btn btn btn-lg btn-info' onclick='reordenar(0,"+i+")'>↑</button>  <strong>"+meuTime[i].nome+"</strong>"+" Nível: <strong>"+meuTime[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuTime["+i+"])'>upar por "+meuTime[i].nivel*120+" ouros</button>"+
         "<br><img src='imagens/"+
         meuTime[i].nome+".png'>"+
         meuTime[i].raca+" "+
@@ -216,7 +209,7 @@ function atualizarSaguao(){
        "<br><strong>"+meuBanco[i].nome+"</strong>"+
         "<img src='imagens/"+
         meuBanco[i].nome+".png'>"+
-        "<br>Nível: <strong>"+meuBanco[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuBanco["+i+"])'>upar</button>"+ 
+        "<br>Nível: <strong>"+meuBanco[i].nivel+"</strong> <button type='button' class='btn btn-sm btn-outline-info' style='border-radius:30px;' onclick='subirNivel(meuBanco["+i+"])'>upar por "+meuBanco[i].nivel*120+" ouros</button>"+ 
         "<br> "+meuBanco[i].raca+
         "<br>"+meuBanco[i].classe+
         " "+meuBanco[i].origem+
@@ -245,16 +238,48 @@ function fecharSaguao(){
 }
 
 function venderBanco(indiceBanco){
-  alert(meuBanco[indiceBanco].nome+" nível "+meuBanco[indiceBanco].nivel+" vendido por: R$ "+meuBanco[indiceBanco].preco/2+"!");
+  alert(meuBanco[indiceBanco].nome+" nível "+meuBanco[indiceBanco].nivel+" vendido por: "+meuBanco[indiceBanco].preco/2+" ouros!");
   jogador.ouro += meuBanco[indiceBanco].preco/2;
   atualizaOuro();
   meuBanco.splice(indiceBanco,1);
   atualizarSaguao();
 }
 
+function arredonda(num){
+
+return(parseFloat(num).toFixed(2));
+
+}
+
+/* REGUA PROGRESSAO
+ 
+maxhp: primario 1.2 secundario 1.08 Outros 1.04
+atqDano: 1.1 secundario 1.08 Outros 1.04
+forcaEspecial: 1.1 secundario 1.08 Outros 1.04
+
+*/
+
+var listaProgressao = {
+
+  'Proto': {'maxhp': 1.08, 'atqDano': 1.08,'forcaEspecial':1.1},
+  'Purple': {'maxhp': 1.08, 'atqDano': 1.1,'forcaEspecial':1.08},
+  'Steroid': {'maxhp': 1.1, 'atqDano': 1.04,'forcaEspecial':1.08},
+  'Red': {'maxhp': 1.04, 'atqDano': 1.1,'forcaEspecial':1.08}
+}
+
 function subirNivel(heroi){
-  alert(heroi.nome+" subiu nivel.");
+  if (jogador.ouro<heroi.nivel*120) {
+    alert("Ouro insuficiente")
+  }else{
+  heroi.maxhp= arredonda(heroi.maxhp*listaProgressao[heroi.nome].maxhp);
+  heroi.atqDano= arredonda(heroi.atqDano*listaProgressao[heroi.nome].atqDano);
+  heroi.forcaEspecial= arredonda(heroi.forcaEspecial*listaProgressao[heroi.nome].forcaEspecial);
+  jogador.ouro=jogador.ouro-heroi.nivel*120;
+  heroi.preco+=heroi.nivel*120; //para receber parte do ouro na venda (a divisão é feita na venda)
+  heroi.nivel++;
+  atualizaOuro();
   atualizarSaguao();
+  }
 }
 
 function colocarBanco(indiceBanco){
@@ -298,10 +323,6 @@ function reordenar(seta,indiceTime){
   }
 
 }
-
-
-// TIMES  ======================================================================================
-var inimigoTime =[];
 
 // TESTES  ======================================================================================
 
@@ -349,17 +370,31 @@ function montarArena() {
 
 
 
-// COMBATE ====================================================================================
+// ARENA ====================================================================================
 
- function selecionaTimeInimigo(nivelArena){
-  if (nivelArena<100) {
+function limpaLog(){
+  document.getElementById("batalhaLogs").innerHTML='';
+}
 
-  }else{
+function log(string){
+  let el = document.getElementById("batalhaLogs");
+   $ (el).append("<br/>"+string);
+}
 
-  }
- }
+function iniciarArena(){
+  let fim=false;
+  let arenaNivel = 1;
 
-  function definirAlvo(timeAlvo){
+ do{
+  let meuTimeTemp= Object.assign({}, meuTime);
+  let timeInimigo=[];
+
+  arenaNivel++;
+ }while !fim;
+
+}
+
+function definirAlvo(timeAlvo){
 	if (timeAlvo==1) {
 		for (var atkj = 1; atkj>=0; atkj--){
 			for ( atki=0;atki<4 ;atki++){
