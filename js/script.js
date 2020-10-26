@@ -14,7 +14,7 @@ document.getElementById("ouro").innerHTML = "Ouro: "+jogador.ouro.toFixed(2);//t
 
 function hero(nome,nivel,maxhp,maxmana,atqDano,esquiva,forcaEspecial,especial){
   this.posicao=null;
-  this.nome=nome;
+  this.nome=nome; 
   this.temporario=null;
   //this.raca=raca;
   this.raca=null;
@@ -368,6 +368,13 @@ function montarArena() {
 
 // teste de chamada de especial passando a força como parâmetro meuTime[2].especial.func(meuTime[2].forcaEspecial)
 
+// INIMIGOS ====================================================================================
+var inimigos
+
+function selecionaTimeInimigo(){
+
+
+}
 
 
 // ARENA ====================================================================================
@@ -381,21 +388,49 @@ function log(string){
    $ (el).append("<br/>"+string);
 }
 
+function atacar(dano, alvo){
+alvo.hpAtual=alvo.hpAtual-dano;
+}
+
+
+function iniciarBatalha(time1,time2){
+  do{
+    let fimBatalha = false;
+    let indiceInimigo = 7;
+    let j=7;
+    for (let i=0; i< time1.length ; i++)
+      if (time1[i].maxMana!=0 ){
+        atacar(time1[i].dano,time2[j])
+      }else{
+        time1[i].especial();
+      }
+  }while(!fimBatalha)
+
+}
+
 function iniciarArena(){
+  
+
   let fim=false;
   let arenaNivel = 1;
-
+  let timeInimigo=[];
  do{
   let meuTimeTemp= Object.assign({}, meuTime);
-  let timeInimigo=[];
+  
+
+
 
   arenaNivel++;
- }while !fim;
+ }while(!fim);
 
 }
 
 function definirAlvo(timeAlvo){
+
+
 	if (timeAlvo==1) {
+
+    /*
 		for (var atkj = 1; atkj>=0; atkj--){
 			for ( atki=0;atki<4 ;atki++){
 
@@ -407,7 +442,9 @@ function definirAlvo(timeAlvo){
 				//chamar a função de ataque
 			}
 		}
+    */
 	}else if (timeAlvo==2) {
+    /*
 		for (var atkj = 2; atkj<4; atkj++){
 			for ( atki=0;atki<4 ;atki++){
 
@@ -419,6 +456,7 @@ function definirAlvo(timeAlvo){
 				//chamar a função de ataque
 			}
 		}
+    */
 	}else{
 		console.log("Time alvo inválido.")
 	}
